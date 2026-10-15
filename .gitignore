@@ -36,3 +36,21 @@ local.properties
 .swp
 ehthumbs.db
 Thumbs.db
+
+# Fork release hygiene
+__pycache__/
+*.py[cod]
+*.class
+*.dex
+*.idsig
+*.p12
+*.pem
+*.keystore
+*.jks
+adbkey*
+storepass
+*.log
+.dist/
+vendor/
+verification*.json
+migration-state.json

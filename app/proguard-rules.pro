@@ -15,3 +15,10 @@
 # https://issuetracker.google.com/issues/189001730
 # https://android-review.googlesource.com/c/platform/frameworks/support/+/1757630
 -keep class androidx.window.** { *; }
+
+# app_process entry points do not use the Android component lifecycle.
+-keep class com.termux.admin.Cli { *; }
+-keep class com.termux.admin.ShellService { *; }
+-keep class com.termux.admin.MaintenanceCli { *; }
+-keep class com.termux.admin.Admin { *; }
+-keep class com.termux.admin.Admin$* { *; }

@@ -2,6 +2,11 @@ plugins {
     id "com.android.application"
 }
 
+def adminCertificate = project.findProperty("termuxAdminCertSha256") ?: ""
+if (!(adminCertificate ==~ /[0-9a-f]{64}/)) {
+    throw new GradleException("Supply -PtermuxAdminCertSha256=<lowercase SHA-256 of APK signing certificate>. See docs/build.md.")
+}
+
 android {
     compileSdkVersion project.properties.compileSdkVersion.toInteger()
     ndkVersion = System.getenv("JITPACK_NDK_VERSION") ?: project.properties.ndkVersion
@@ -28,10 +33,11 @@ android {
 
     defaultConfig {
         applicationId "com.termux"
+        buildConfigField "String", "ADMIN_CERT_SHA256", '"' + adminCertificate + '"'
         minSdkVersion project.properties.minSdkVersion.toInteger()
         targetSdkVersion project.properties.targetSdkVersion.toInteger()
-        versionCode 1002
-        versionName "0.118.3"
+        versionCode 1004
+        versionName "0.118.3-admin.2"
 
         if (appVersionName) versionName = appVersionName
         validateVersionName(versionName)
@@ -62,24 +68,16 @@ android {
         }
     }
 
-    signingConfigs {
-        debug {
-            storeFile file('dev_keystore.jks')
-            keyAlias 'alias'
-            storePassword 'xrj45yWGLbsO7W0v'
-            keyPassword 'xrj45yWGLbsO7W0v'
-        }
-    }
-
     buildTypes {
         release {
+            debuggable false
             minifyEnabled true
             shrinkResources false // Reproducible builds
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
-            signingConfig signingConfigs.debug
+            signingConfig null
         }
     }
 

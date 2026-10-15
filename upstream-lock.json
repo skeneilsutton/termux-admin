@@ -1,0 +1,8 @@
+{
+  "termux-app": {"url": "https://github.com/termux/termux-app.git", "commit": "5b657c6adf4304e5198951ce815fe0205dcac29c", "version": "v0.118.3"},
+  "termux-api": {"url": "https://github.com/termux/termux-api.git", "commit": "6c8eaa223bcc387e6b28146d340acb20712aa3e7", "version": "v0.53.0", "upstream_shared_dependency_commit": "7bceab88e2272f961d1b94ef736f1a9e20173247"},
+  "termux-api-shared": {"url": "https://github.com/termux/termux-app.git", "commit": "7bceab88e2272f961d1b94ef736f1a9e20173247", "use": "Build API's exact shared-library revision from source in a generated AGP 8 workspace"},
+  "termux-boot": {"url": "https://github.com/termux/termux-boot.git", "commit": "613dc9893f672313e2c572c0089ece7475e04f5b", "version": "v0.8.1"},
+  "bootstrap": {"url": "https://github.com/termux/termux-packages", "version": "bootstrap-2025.03.28-r1+apt-android-7", "checksums": "app/build.gradle"},
+  "shizuku-protocol-reference": {"url": "https://github.com/RikkaApps/Shizuku", "version": "v13.6.0", "use": "Explicit broadcast callback discovery pattern; not a runtime dependency"}
+}

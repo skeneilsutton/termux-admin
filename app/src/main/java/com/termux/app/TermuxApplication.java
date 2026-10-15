@@ -10,6 +10,10 @@ import com.termux.shared.logger.Logger;
 public class TermuxApplication extends Application {
     public void onCreate() {
         super.onCreate();
+        try { com.termux.admin.Maintenance.installClient(this); }
+        catch (java.io.IOException failure) {
+            android.util.Log.e("TermuxAdmin", "Command installation failed", failure);
+        }
 
         // Set crash handler for the app
         TermuxCrashUtils.setCrashHandler(this);

@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-14",
+  "candidate": "0.118.3-admin.2",
+  "scope": "Local source preparation and build validation. No phone deployment or publication.",
+  "host": "macOS arm64",
+  "regressions": {
+    "callback_tests": 7,
+    "recovery_cleanup_tests": 3,
+    "registration_challenge_concurrency_expiry_replay": "passed",
+    "process_lock_contention_death_and_inheritance": "passed",
+    "runtime_environment_filtering": "passed",
+    "source_and_built_receiver_permissions": "passed",
+    "python_and_shell_syntax": "passed",
+    "publication_file_scan": "passed"
+  },
+  "build": {
+    "core_architecture_splits_and_universal": "passed, five APKs",
+    "recovery_helper": "passed",
+    "signature_and_non_debuggable_checks": "passed for all eight APKs",
+    "embedded_core_certificate_pins": "passed for all five core APKs",
+    "signing_identity": "Temporary local validation key, excluded from source and not a durable release identity",
+    "plugins": "passed, Boot and API built from pinned source and verified with the core signer",
+    "termux_boot": "passed, built from pinned source and verified with the core signer",
+    "termux_api": "passed, exact pinned shared-library source compiled through the documented AGP 8 adapter",
+    "artifact_count": 8
+  },
+  "source_export": {
+    "archive": ".dist/termux-admin-source.tar.gz",
+    "per_file_checksums_and_extraction": "passed",
+    "validation_without_git_checkout": "passed",
+    "excludes": [
+      "Git history",
+      "private signing material",
+      "phone backups",
+      "device receipts",
+      "generated APKs",
+      "logs",
+      "vendor caches"
+    ]
+  },
+  "emulator_smoke": {
+    "platform": "Disposable Android 16 AOSP emulator, enforcing SELinux",
+    "production_apk_installation_and_owner_enrollment": "passed",
+    "real_uid_2000_command_execution": "passed",
+    "separate_stdout_stderr_and_exit_code_7": "passed",
+    "owner_camera_policy_readback_and_restore": "passed",
+    "independent_watcher_worker_startup": "passed",
+    "renamed_helper_state_enable_disable_and_debugging_cleanup": "passed",
+    "fixture": "Userdebug root staged files and launched the CLI as the actual Termux UID. Worker and watcher ran as UID 2000.",
+    "limits": "No full SSH setup, local TLS pairing, failure suite, or reboot test for this candidate"
+  },
+  "pending": [
+    "Complete unrooted physical Android 16 setup and acceptance tests for this prepared source",
+    "Renamed helper and configurable SSH port validation on a disposable device",
+    "Termux:API runtime checks after the source-build adapter",
+    "Authorized warm failure and reboot tests with first unlock and connected Wi-Fi",
+    "Durable release signer and binary distribution provenance review"
+  ],
+  "publication": "Not performed"
+}
